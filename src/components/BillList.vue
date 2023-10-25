@@ -1,82 +1,107 @@
 <template>
     <div>
-        <v-card>
-            <v-card-title> Bills </v-card-title>
+        <div>
+            <h4> Bills </h4>
             <!-- <v-card-text> -->
                 <!-- <v-form @submit.prevent="addBill"> -->
-                        <v-row>
-                            <v-col>
-                                <v-text-field v-model="name" label="Name"></v-text-field>
-                            </v-col>
-                        </v-row>
+                <div>
+                    <label> Name </label>
+                    <input v-model="name" label="Name" />
+                </div>
 
-                        <v-row>
-                            <v-col>
-                                <v-text-field v-model="description" label="Description"></v-text-field>
-                            </v-col>
-                        </v-row>
+                <div>
+                    <label> Description </label>
+                    <input v-model="description" label="Description" />
+                </div>
 
-                        <v-row>
-                            <v-col>
-                                <v-text-field v-model="category" label="Category"></v-text-field>
-                            </v-col>
-                        </v-row>
+                <div>
+                    <label> Catgory </label>
+                    <input v-model="category" label="Category" />
+                </div>
 
-                        <v-row>
-                            <v-col>
-                                <v-text-field v-model="amount" label="Amount"></v-text-field>
-                            </v-col>
-                        </v-row>
+                <div>
+                    <label> Amount </label>
+                    <input v-model="amount" label="Amount" />
+                </div>
 
-                        <v-row>
-                            <v-col>
-                                <v-text-field v-model="type" label="Type"></v-text-field>
-                            </v-col>
-                        </v-row>
+                <div>
+                    <label> Type </label>
+                    <input v-model="type" label="Type" />
+                </div>
 
-                        <v-row>
-                            <v-col>
-                                <v-text-field v-model="user" label="User"></v-text-field>
-                            </v-col>
-                        </v-row>
-                        <v-btn color="primary" @click="addBill"> Agregar </v-btn>
+                <button color="primary" @click="addBill"> Agregar </button>
                 <!-- </v-form> -->
             <!-- </v-card-text> -->
-        </v-card>
+            </div>
+        <div>
+            {{ bills }}
+
+            <table>
+                <thead>
+                    <th> Bill </th>
+                    <th> Description </th>
+                    <th> Amount </th>
+                    <th> Category </th>
+                    <th> Type </th>
+                </thead>
+                <tbody>
+                    <tr v-for="bill in bills" :key="bill.id">
+                        <td> {{ bill.name }} </td>
+                        <td> {{ bill.description }} </td>
+                        <td> {{ bill.amount }} </td>
+                        <td> {{ bill.category }} </td>
+                        <td> {{ bill.type }} </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </template>
 
 <script>
-    export default {
+import { mapGetters } from 'vuex';
 
-        data() {
-            return {
-                name: 'Mandado',
-                description: 'Carne asada con los compas',
-                category: 1,
-                amount: 1500.00,
-                type: 3,
-                user: 1
-            }
+export default {
+
+    data() {
+        return {
+            name: 'Mandado',
+            description: 'Carne asada con los compas',
+            category: 1,
+            amount: 1500.00,
+            type: 3,
+            user: 1,
+            bills_data: []
+        }
+    },
+
+    computed: {
+        ...mapGetters({
+            bills: 'getItems'
+        })
+    },
+
+    // computed: {
+    //     bills() {
+    //         console.log('consumiendo bills data');
+    //         this.bills_data = this.$store.getters.getBills;
+    //         console.log( this.bills_data );
+    //     },
+    // },
+
+    methods: {
+        addBill() {
+            // this.$store.dispatch('post/ADD_NEW', this.data)
+            var data = { user: this.user, name: this.name, description: this.description, category: this.category, amount: this.amount, type: this.type }; 
+            // console.log(data);
+            this.$store.dispatch('createBill', data);
         },
+    },
 
-        // computed: {
-            // bills() {
-            //     return this.$store.getters.getBills;
-            // },
-        // },
-
-        methods: {
-            addBill() {
-                var data = { user: this.user, name: this.name, description: this.description, category: this.category, amount: this.amount, type: this.type }; 
-                // console.log(data);
-                this.$store.dispatch('createBill', data);
-            },
-        }//,
-
-        // mounted() {
-            // this.$store.dispatch('fetchBills');
-        // }
-
+    mounted() {
+        this.$store.dispatch('fetchBills');
     }
+
+}
 </script>

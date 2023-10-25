@@ -11,6 +11,17 @@ const store = createStore({
     },
 
     actions: {
+        
+        async fetchBills({ commit }) {
+            try {
+                const response = await axios.get('https://apierp.vercel.app/bill');
+                // console.log( response.data.data );
+                commit('setBills', response.data.data)
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        
         async createBill({ commit }, bill) {
             try {
                 console.log( 'commit', commit );
@@ -39,17 +50,15 @@ const store = createStore({
             } catch (error) {
                 console.log(error);
             }
-        }
-        // async fetchBills({ commit }) {
-        //     try {
-        //         const response = await axios.get()
-        //     } catch (error) {
-        //         console.log(error);
-        //     }
-        // },
+        },
+
     },
 
     mutations: {
+        setBills: (state, bills) => { 
+            console.log( bills );
+            (state.bills = bills) 
+        },
         createBill: (state, bill) => state.bills.push(bill),
         editBill: (state, { id, bill }) => {
             const index = state.bills.findIndex((i) => i.id === id);
