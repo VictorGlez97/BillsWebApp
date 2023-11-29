@@ -1,12 +1,18 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-// import '@mdi/font/css/materialdesignicons.css'
-// import 'vuetify/styles'
-import { createVuetify } from 'vuetify'
+import PrimeVue from 'primevue/config'
+import Dialog from 'primevue/dialog'
+
+import 'primevue/resources/themes/lara-dark-green/theme.css'
+import 'primevue/resources/primevue.min.css'
+// import 'primevue/primeicons.css'
 
 import store from './store/index'
 
-const vuetify = createVuetify();
+const app = createApp(App);
+app.use(store);
+app.use(PrimeVue);
+app.component('Dialog', Dialog);
 
-const app = createApp(App).use(vuetify).use(store).mount('#app')
+app.mount('#app');

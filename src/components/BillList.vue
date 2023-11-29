@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <div>
             <h4> Bills </h4>
             <!-- <v-card-text> -->
@@ -92,9 +92,14 @@ export default {
 
     methods: {
         addBill() {
-            // this.$store.dispatch('post/ADD_NEW', this.data)
-            var data = { user: this.user, name: this.name, description: this.description, category: this.category, amount: this.amount, type: this.type }; 
-            // console.log(data);
+            var data = { 
+                user: this.user, 
+                name: this.name, 
+                description: this.description, 
+                category: this.category, 
+                amount: this.amount, 
+                type: this.type 
+            }; 
             this.$store.dispatch('createBill', data);
         },
     },

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^1.5.1",
+    "primevue": "^3.42.0",
     "vue": "^3.3.4",
     "vuetify": "^3.4.0-alpha.1",
     "vuex": "^4.1.0"
