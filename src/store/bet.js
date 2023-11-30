@@ -54,13 +54,11 @@ export default {
             }
         },
 
-        async createBill({ commit }, bill) {
+        async createBet({ commit }, bill) {
             try {
-                console.log( 'commit', commit );
-                console.log( 'bill', bill );
                 const response = await axios.post('https://apierp.vercel.app/bet', bill);
                 console.log( response.data );
-                commit('createBill', response.data);
+                commit('createBet', response.data);
             } catch (error) {
                 console.log(error);
             }

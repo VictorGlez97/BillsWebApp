@@ -1,6 +1,6 @@
 <template>
 
-    <div
+    <!-- <div
         v-for="bet in bets"
     >
         <div class="row">
@@ -10,11 +10,30 @@
                 </div>
             </div>
         </div>
+    </div> -->
+
+    <div style="display: flex; flex-direction: row; justify-content: center; margin-bottom: 2%;">
+        <table>
+            <thead>
+                <tr>
+                    <th> Apuesta </th>
+                    <th> Momio </th>
+                    <th> Cantidad </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="bet in bets" :key="bet.name">
+                    <td>{{ bet.name }}</td>
+                    <td>{{ bet.momio }}</td>
+                    <td>{{ bet.amount }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
-    <div>
+    <!-- <div>
         {{ bets }}
-    </div>
+    </div> -->
 
 </template>
 
