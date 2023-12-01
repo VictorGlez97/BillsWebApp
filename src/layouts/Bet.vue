@@ -1,6 +1,6 @@
 <template>
 
-    <div class="container">
+    <!-- <div class="container"> -->
 
         <BetForm/>
         
@@ -8,7 +8,7 @@
         
         <BetModal/>
 
-    </div>
+    <!-- </div> -->
 
 </template>
 

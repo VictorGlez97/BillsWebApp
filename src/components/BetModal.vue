@@ -6,7 +6,7 @@
         {{ results }}
     </div> -->
 
-    <div style="display: flex; flex-direction: column; padding-left: 15%; padding-right: 15%;">
+    <div style="display: flex; flex-direction: column; padding-left: 30%; padding-right: 30%;">
 
         <input type="text" v-model="apuesta" placeholder="apuesta">
 
@@ -22,10 +22,10 @@
             <option :value="item.id" v-for="item in sports" :key="item.id">{{ item.dictionary }}</option>
         </select>
 
-        <select v-model="selected_result">
+        <!-- <select v-model="selected_result">
             <option value="0" disabled> Selecciona un resultado </option>
             <option :value="item.id" v-for="item in results" :key="item.key">{{ item.dictionary }}</option>
-        </select>
+        </select> -->
 
         <input type="number" v-model="momio" placeholder="momio">
 
@@ -62,14 +62,14 @@ export default {
     mounted() {
         this.$store.dispatch('fechTyepBets');
         this.$store.dispatch('fechSportBets');
-        this.$store.dispatch('fechResultBets');
+        // this.$store.dispatch('fechResultBets');
     },
 
     computed: {
         ...mapGetters({
             types: 'getTypesBet',
             sports: 'getSportsBet',
-            results: 'getResultsBet'
+            // results: 'getResultsBet'
         })
     },
 
@@ -84,7 +84,8 @@ export default {
                 description: this.descripcion,
                 type: parseInt(this.selected_type),
                 sport: parseInt(this.selected_sport),
-                result: parseInt(this.selected_result),
+                // result: parseInt(this.selected_result),
+                result: 12,
                 momio: parseFloat(this.momio),
                 amount: parseFloat(this.cantidad),
                 user: parseInt(1)
